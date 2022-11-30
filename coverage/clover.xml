@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1669803244985" clover="3.2.0">
-  <project timestamp="1669803244985" name="All files">
+<coverage generated="1669815610366" clover="3.2.0">
+  <project timestamp="1669815610366" name="All files">
     <metrics statements="22" coveredstatements="22" conditionals="10" coveredconditionals="9" methods="1" coveredmethods="1" elements="33" coveredelements="32" complexity="0" loc="22" ncloc="22" packages="1" files="1" classes="1"/>
-    <file name="price.js" path="C:\Users\user\Documents\Tes Kerja\KedaTech\src\helper\price.js">
+    <file name="price.js" path="C:\Users\user\Documents\Tes Kerja\KedaTech 2\sistem-parkir-backend\src\helper\price.js">
       <metrics statements="22" coveredstatements="22" conditionals="10" coveredconditionals="9" methods="1" coveredmethods="1"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="18" type="stmt"/>
