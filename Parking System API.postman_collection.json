@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "02ddf58e-e334-4fb1-9de2-4ce4ee0cd672",
+		"name": "Parking System API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15820714"
+	},
+	"item": [
+		{
+			"name": "get all data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/?startPrice=10000&endPrice=30000&idVehicle=2&startEntryTime=2000-01-07T21:05:05.000Z&endEntryTime=2000-01-07T21:05:05.000Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						""
+					],
+					"query": [
+						{
+							"key": "startPrice",
+							"value": "10000"
+						},
+						{
+							"key": "endPrice",
+							"value": "30000"
+						},
+						{
+							"key": "idVehicle",
+							"value": "2"
+						},
+						{
+							"key": "startEntryTime",
+							"value": "2000-01-07T21:05:05.000Z"
+						},
+						{
+							"key": "endEntryTime",
+							"value": "2000-01-07T21:05:05.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idVehicle\": 1,\r\n    \"entryTime\": \"2022-11-29T12:34:32.000Z\",\r\n    \"exitTime\": \"2022-11-30T12:34:37.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -20,6 +20,7 @@ Untuk menginput data menggunakan POST, dapat menggunakan json dengan format beri
 idVehicle diisi dengan 1 untuk mobil atau 2 untuk motor.
 Format timestamp yang dipakai adalah "YYYY-MM-DDTHH:mm:ss.000Z"
 
+Untuk collection melalui postman sebagai contoh penggunaan API sudah terlampir pada file Parking System API.postman_collection
 
 Untuk unit test menggunakan jest dan screenshot testing terdapat pada link berikut : https://prnt.sc/TmdEja9qlS0Z
 
