@@ -7,7 +7,7 @@ const controllers = {
   selectAllData: async (req, res) => {
     try {
       //Memasukkan query ke variabel dan memberi default value
-      const idVehicle = req.query.idVehicle || 0;
+      const idVehicle = parseInt(req.query.idVehicle) || 0;
       const startEntryTime = req.query.startEntryTime || "";
       const endEntryTime = req.query.endEntryTime || "";
       const startPrice = req.query.startPrice || 0;
@@ -47,7 +47,7 @@ const controllers = {
   insertData: async (req, res) => {
     try {
       //Memasukkan query ke variabel dan memberi default value
-      const idVehicle = req.body.idVehicle || 0;
+      const idVehicle = parseInt(req.body.idVehicle) || 0;
       const entryTime = req.body.entryTime || "";
       const exitTime = req.body.exitTime || "";
       const inputError = [];

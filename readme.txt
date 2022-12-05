@@ -1,29 +1,24 @@
-Pada sistem parkir ini ada 2 link untuk melakukan get dan post :
+Aplikasi Penghitungan Harga Parkir (PostgreSQL, Node.JS, Express.JS, EJS)
+
+-- Query PostgreSQL 
+Sebelum menggunakan aplikasi ini, diperlukan melakukan beberapa query di postgreSQL (karena tidak menggunakan ORM). Untuk daftar query yang diperlukan dapat dilihat pada file terlampir 'query.sql' .
+
+--- API
+Pada sistem parkir ini terdapat 2 link API:
 1. GET /api/v1/ -> untuk mengambil data
 2. POST /api/v1 -> untuk menginput data
 
+Untuk contoh penggunaan API, saya lampirkan export Postman sebagai contoh di file 'Parking System API.postman_collection.json' . 
 
-Pada saat mengambil data menggunakan GET, dapat melakukan filter dengan memasukkan query berikut:
-idVehicle -> untuk menentukan jenis kendaraan yang dipilih (diisi 1 untuk mobil atau 2 untuk motor)
-startPrice -> harga minimum
-endPrice -> harga maksimum
-startEntryTime -> waktu masuk minimum / paling lama
-endEntryTime -> waktu maksimum / paling baru
+--Unit test 
+Untuk unit test dilakukan menggunakan Jest, dengan menggunakan command di terminal 'npm run test' .
+File test terlampir pada '/test/price.test.js'
 
+--Halaman Tampilan
+Halaman tampilan menggunakan EJS, terdapat 2 halaman :
+1. "/" -> untuk halaman Home, berisi tabel daftar kendaraan yang terdaftar dalam sistem parkir. Pada halaman Home ini terdapat filter tipe kendaraan, range harga, dan range waktu masuk, yang akan tertampil dalam tabel.
+2. "/add" -> untuk halaman Add, berisi form untuk melakukan input kendaraan yang akan didaftarkan ke dalam sistem parkir.
 
-Untuk menginput data menggunakan POST, dapat menggunakan json dengan format berikut:
-{
-    "idVehicle": 1,
-    "entryTime": "2022-11-29T12:34:32.000Z",
-    "exitTime": "2022-11-30T12:34:37.000Z"
-}
-idVehicle diisi dengan 1 untuk mobil atau 2 untuk motor.
-Format timestamp yang dipakai adalah "YYYY-MM-DDTHH:mm:ss.000Z"
-
-Untuk collection melalui postman sebagai contoh penggunaan API sudah terlampir pada file Parking System API.postman_collection
-
-Untuk unit test menggunakan jest dan screenshot testing terdapat pada link berikut : https://prnt.sc/TmdEja9qlS0Z
-
-Untuk tampilannya belum ada, karena mengalami kendala dalam membuat file EJS.
+Untuk file EJS halaman tampilan terlampir pada direktori '/views'
 
 Terima kasih.

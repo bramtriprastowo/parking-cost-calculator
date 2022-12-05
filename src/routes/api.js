@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const controllers = require("../controllers/index");
+const controllers = require("../controllers/api");
 
+//Rute API untuk melakukan get dan post
 router
   .get("/", controllers.selectAllData)
   .post("/", controllers.insertData)

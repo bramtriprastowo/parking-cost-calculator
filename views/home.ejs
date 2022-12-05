@@ -1,0 +1,173 @@
+<div class="container">
+  <div class="row justify-content-center gx-5 my-5">
+    <div class="col-12 col-lg-4">
+      <label for="idVehicle" class="form-label">Tipe Kendaraan</label>
+      <select id="idVehicle" class="form-select" name="idVehicle">
+        <option value="">Semua tipe</option>
+        <option value="1">Mobil</option>
+        <option value="2">Motor</option>
+      </select>
+      </div>
+      <div class="col-12 col-lg-4">
+        <label for="entryTime" class="form-label"
+          >Tanggal dan Waktu Masuk (Awal)</label
+        >
+        <input
+          class="form-control mb-3"
+          type="datetime-local"
+          step="1"
+          placeholder="Default input"
+          aria-label="default input"
+          name="startEntryTime"
+          id="startEntryTime"
+        />
+        <label for="exitTime" class="form-label"
+          >Tanggal dan Waktu Masuk (Akhir)</label
+        >
+        <input
+          class="form-control mb-3"
+          type="datetime-local"
+          placeholder="Default input"
+          aria-label="default input"
+          name="endEntryTime"
+          id="endEntryTime"
+        />
+      </div>
+      <div class="col-12 col-lg-4">
+        <label for="exitTime" class="form-label">Harga minimal (Rp)</label>
+        <input
+          class="form-control mb-3"
+          type="number"
+          placeholder="example: 20000"
+          aria-label="default input"
+          name="startPrice"
+          id="startPrice"
+        />
+        <label for="startPrice" class="form-label">Harga maksimal (Rp)</label>
+        <input
+          class="form-control mb-3"
+          type="number"
+          placeholder="example: 50000"
+          aria-label="default input"
+          name="endPrice"
+          id="endPrice"
+        />
+      </div>
+      <div class="col-12 col-lg-4">
+      <button class="btn btn-primary w-100" id="searchBtn">Filter</button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <br />
+    <div class="col-12 col-md-10 text-center">
+      <h4 class="my-5">Daftar Parkir</h4>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr class="table-success align-middle">
+            <th scope="col">No.</th>
+            <th scope="col">Kendaraan</th>
+            <th scope="col">ID</th>
+            <th scope="col">Tanggal Masuk</th>
+            <th scope="col">Waktu Masuk</th>
+            <th scope="col">Tanggal Keluar</th>
+            <th scope="col">Waktu Keluar</th>
+            <th scope="col">Harga</th>
+          </tr>
+        </thead>
+        <tbody id="parkingTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Variabel target manipulasi DOM
+  const idVehicle = document.getElementById("idVehicle");
+  const startEntryTime = document.getElementById("startEntryTime");
+  const endEntryTime = document.getElementById("endEntryTime");
+  const startPrice = document.getElementById("startPrice");
+  const endPrice = document.getElementById("endPrice");
+  const searchBtn = document.getElementById("searchBtn");
+  const parkingTable = document.getElementById("parkingTable");
+
+  //Link API
+  let options = "http://localhost:3000/api/v1";
+
+  // Meninstansiasi promise
+  const displayDataPromise = (url) => {
+    return new Promise((resolve, reject) => {
+      if (url) {
+        let parsedData = [];
+        fetch(
+          `${url}?idVehicle=${idVehicle.value}&startEntryTime=${startEntryTime.value}&endEntryTime=${endEntryTime.value}&startPrice=${startPrice.value}&endPrice=${endPrice.value}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            parsedData = data.data;
+            console.log(data.data);
+          })
+          .then(() => resolve(parsedData));
+      } else {
+        reject("Error");
+        parkingTable.innerHTML = "<tr><td>Data not found!</td></tr>";
+      }
+    });
+  };
+
+  //Fungsi untuk mengumpulkan berita dalam HTML
+  function parseData(data) {
+    let parsedData = "";
+    parkingTable.innerHTML = "<h5 class='text-center'>Data not found!</h5>";
+
+    if (data.length !== 0) {
+      data.forEach((datum, index) => {
+        parsedData += `<tr>
+      <td>${index + 1}</td>
+      <td>
+        ${
+          datum.vehicle_type.charAt(0).toUpperCase() +
+          datum.vehicle_type.slice(1)
+        }
+      </td>
+      <td>${datum.id}</td>
+      <td>
+        ${new Date(datum.entry_time).toLocaleDateString("id-ID")}
+      </td>
+      <td>
+        ${new Date(datum.entry_time).toLocaleTimeString("id-ID")}
+      </td>
+      <td>
+        ${new Date(datum.exit_time).toLocaleDateString("id-ID")}
+      </td>
+      <td>
+        ${new Date(datum.exit_time).toLocaleTimeString("id-ID")}
+      </td>
+      <td>Rp ${datum.price.toLocaleString("id-ID")}</td>
+    </tr>`;
+      });
+    } else {
+      parsedData = `<tr><td colspan="8"><p class='text-center'>Data not found!</p></td></tr>`;
+    }
+    return parsedData;
+  }
+
+  //Fungsi untuk menampilkan berita yang sudah dikumpulkan
+  function renderData(data) {
+    return (parkingTable.innerHTML = data);
+  }
+
+  const displayData = async () => {
+    try {
+      let fetchedData = await displayDataPromise(options);
+      let parsedData = parseData(fetchedData);
+      renderData(parsedData);
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+  };
+
+  searchBtn.addEventListener("click", displayData);
+  displayData();
+  //Memanggil fungsi utama
+</script>

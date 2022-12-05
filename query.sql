@@ -1,5 +1,5 @@
 -- Membuat database
-CREATE DATABASE kedatech;
+CREATE DATABASE parking_system;
 
 -- Membuat tabel yang diperlukan (tabel Vehicle dibuat terlebih dahulu karena merupakan parent table)
 CREATE TABLE vehicle(
@@ -19,14 +19,3 @@ CREATE TABLE parking(
 -- Memasukkan data ke tabel vehicle
 INSERT INTO vehicle(vehicle_type)
 VALUES ('mobil'),('motor');
-
-
---Contoh input di tabel parking
-INSERT INTO parking(id_vehicle, entry_time, exit_time, price)
-VALUES(2, '1999-01-08T04:05:06.000Z', '1999-01-08T04:05:45.000Z', 20000);
-
---Query untuk get data
-SELECT parking.id, vehicle.vehicle_type, parking.entry_time, parking.exit_time, price 
-FROM parking 
-JOIN vehicle ON parking.id_vehicle=vehicle.id 
-ORDER BY id ASC;

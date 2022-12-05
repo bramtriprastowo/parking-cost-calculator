@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="my-4 text-center">Halaman Pencatatan</h4>
+    <div class="col-12 col-md-10">
+      <form action="<%= link %>" method="post" target="_blank">
+        <div class="mb-3">
+          <label for="idVehicle" class="form-label">Tipe Kendaraan</label>
+          <select id="idVehicle" class="form-select" name="idVehicle">
+            <option value="">Pilih Tipe Kendaraan</option>
+            <option value="1">Mobil</option>
+            <option value="2">Motor</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="entryTime" class="form-label"
+            >Tanggal dan Waktu Masuk</label
+          >
+          <input
+            class="form-control"
+            type="datetime-local"
+            step="1"
+            placeholder="Default input"
+            aria-label="default input example"
+            name="entryTime"
+            id="entryTime"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exitTime" class="form-label"
+            >Tanggal dan Waktu Keluar</label
+          >
+          <input
+            class="form-control"
+            type="datetime-local"
+            step="1"
+            placeholder="Default input"
+            aria-label="default input example"
+            name="exitTime"
+            id="exitTime"
+          />
+        </div>
+        <button class="btn btn-primary" id="submitBtn" type="submit">
+          Tambah
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById("submitBtn").addEventListener("click", submitFunction);
+
+  function submitFunction() {
+    console.log(idVehicle);
+    alert("Submit dilakukan! Hasil akan muncul jika data berhasil diinput!");
+    window.location.href = "/";
+  }
+</script>
